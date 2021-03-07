@@ -24,7 +24,7 @@ export const videos = [
         }
     },
     {
-        id:23982,
+        id:12121,
         title: "Video Nice",
         description: "This is something I love",
         views: 24,
@@ -36,7 +36,7 @@ export const videos = [
         }
     },
     {
-        id:23982,
+        id:34343,
         title: "Video Perfect",
         description: "This is something I love",
         views: 24,
