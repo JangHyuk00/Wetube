@@ -1,50 +1,19 @@
-export const videos = [
+import mongoose from "mongoose";
+
+mongoose.connect(
+    "mongodb://localhost:27017/we-tube",
     {
-        id:23982,
-        title: "Video Awesome",
-        description: "This is something I love",
-        views: 24,
-        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        creater: {
-            id: 121212,
-            name: "Jimmy",
-            email: "ren@las.com"
-        }
-    },
-    {
-        id:23232,
-        title: "Video Super",
-        description: "This is something I love",
-        views: 24,
-        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        creater: {
-            id: 121212,
-            name: "Jimmy",
-            email: "ren@las.com"
-        }
-    },
-    {
-        id:12121,
-        title: "Video Nice",
-        description: "This is something I love",
-        views: 24,
-        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        creater: {
-            id: 121212,
-            name: "Jimmy",
-            email: "ren@las.com"
-        }
-    },
-    {
-        id:34343,
-        title: "Video Perfect",
-        description: "This is something I love",
-        views: 24,
-        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        creater: {
-            id: 121212,
-            name: "Jimmy",
-            email: "ren@las.com"
-        }
+        useNewUrlParser: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true
     }
-]
+);
+
+// save connection of mongoose as db
+const db = mongoose.connection;
+
+const handleOpen = () => console.log("✅ Connected to DB");
+const handleError = error => console.log(`❌ Error on DB connection:${error}`);
+// once is happening only once, open is open a connection to above function
+db.once("open", handleOpen);
+db.on("error", handleError);
