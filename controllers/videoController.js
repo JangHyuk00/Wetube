@@ -3,7 +3,7 @@ import Video from "../models/Video";
 
 export const home = async(req,res) => {
     try{
-        const videos = await Video.find({});
+        const videos = await Video.find({});    //find all the video in DB
         res.render("home", {pageTitle: "Home", videos});
     } catch(error) {
         console.log(error);
@@ -25,6 +25,7 @@ export const postUpload = async(req,res) => {
         file: {path}
     } = req;
     const newVideo = await Video.create({
+        //same with models/Video
         fileUrl: path,
         title,
         description
