@@ -14,9 +14,16 @@ export const home = async(req,res) => {
 };
 
 // Search
-export const search = (req,res) => {
+export const search = async(req,res) => {
     const {query:{term: searchingBy}} = req;
-    res.render("search", {pageTitle: "Search", searchingBy})
+    let videos = []; //videos is defined by its empty array
+                     //use let but const bec videos need to be reassigned by video that i find
+    try {
+        videos = await Video.find({title: {$regex: searchingBy, $options: "i"}});
+    } catch(error) {
+        console.log(error);
+    }
+    res.render("search", {pageTitle: "Search", searchingBy, videos})
 };
 
 // Upload
