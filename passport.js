@@ -18,5 +18,9 @@ passport.use(new GithubStrategy(
 );
 
 // "hey passport, only send the user id as cookie"
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(function (user, done) {
+    done(null, user);
+});
+passport.deserializeUser(function (user, done) {
+    done(null, user);
+});
