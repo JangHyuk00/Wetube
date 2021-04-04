@@ -396,9 +396,13 @@ input[type="submit"] {
   .social-login .social-login--github {
     background-color: #444444;
     color: white; }
+    .social-login .social-login--github a:visited {
+      color: white; }
   .social-login .social-login--kakao {
     background-color: #ffe812;
     color: white; }
+    .social-login .social-login--kakao a:visited {
+      color: black; }
 
 .videoBlock video {
   margin-bottom: 10px;

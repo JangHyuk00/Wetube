@@ -20,9 +20,15 @@
     .social-login--github {
         background-color: $black;
         color: white;
+        a:visited{
+            color: white;
+        }
     }
     .social-login--kakao {
         background-color: #ffe812;
         color: white;
+        a:visited{
+            color: black;
+        }
     }
 }
