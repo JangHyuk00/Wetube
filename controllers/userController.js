@@ -59,6 +59,45 @@ export const postGithubLogIn = (req, res) => {
     res.redirect(routes.home);
 };
 
+/*export const facebookLogin = passport.authenticate("facebook");
+
+export const facebookLoginCallback = (accessToken, refreshToken, profile, cb) => {
+    console.log(accessToken, refreshToken, profile, cb);
+};
+export const postFacebookLogin = (req,res) => {
+    res.redirect(routes.home);
+};*/
+
+export const kakaoLogin = passport.authenticate("kakao");
+export const kakaoLoginCallback = async (_, __, profile, cb) => {
+    const {
+        _json: {
+            id, 
+            properties: {nickname: name, profile_image: avatarUrl},
+            kakao_account: {email}
+        }
+    } = profile;
+    try {
+        const user = await User.findOne({email});
+        if(user) {
+            user.kakaoId = id;
+            user.save();
+            return cb(null, user);
+        } const newUser = await User.create({
+                email,
+                name,
+                kakaoId: id,
+                avatarUrl
+            });
+            return cb(null, newUser);
+    } catch {
+        return cb(error);
+    }
+};
+export const postKakaoLogin = (req, res) => {
+    res.redirect(routes.home);
+};
+
 export const logout = (req,res) => {
     req.logout();
     res.redirect(routes.home);

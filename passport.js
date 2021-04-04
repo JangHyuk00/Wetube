@@ -1,7 +1,9 @@
 import passport from "passport";
 import GithubStrategy from "passport-github";
+import KakaoStrategy from "passport-kakao";
+import FacebookStrategy from "passport-facebook";
 import User from "./models/User";
-import {githubLoginCallback} from "./controllers/userController";
+import {facebookLoginCallback, githubLoginCallback, kakaoLoginCallback} from "./controllers/userController";
 import routes from "./routes";
 
 // use means use a strategy from passport
@@ -16,6 +18,14 @@ passport.use(new GithubStrategy(
     githubLoginCallback
     )
 );
+passport.use(new KakaoStrategy(
+    {
+    clientID: process.env.KAKAO_ID,
+    clientSecret: process.env.KAKAO_SECRET,
+    callbackURL: `http://localhost:4000${routes.kakaoCallback}`
+    },
+    kakaoLoginCallback
+));
 
 // "hey passport, only send the user id as cookie"
 passport.serializeUser(function (user, done) {
