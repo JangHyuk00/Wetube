@@ -73,7 +73,7 @@ export const kakaoLoginCallback = async (_, __, profile, cb) => {
     const {
         _json: {
             id, 
-            properties: {nickname: name, profile_image: avatarUrl},
+            properties: {nickname: name, thumbnail_image: avatarUrl},
             kakao_account: {email}
         }
     } = profile;
@@ -116,5 +116,5 @@ export const userDetail = async (req,res) => {
         res.redirect(routes.home);
     }
 };
-export const editProfile = (req,res) => res.render("editProfile", {pageTitle: "Edit Profile"});
+export const getEditProfile = (req,res) => res.render("editProfile", {pageTitle: "Edit Profile"});
 export const changePassword = (req,res) => res.render("changePassword", {pageTitle: "Change Password"});
