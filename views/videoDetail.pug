@@ -6,9 +6,10 @@ block content
             video(src=`/${video.fileUrl}`)
             // i need to add "/" bec the file is in my server
         .video__info
-            if video.creator.id === loggedUser.id
-                a(href=routes.editVideo(video.id)) 
-                    button Edit Video
+            if loggedUser
+                if video.creator.id === loggedUser.id
+                    a(href=routes.editVideo(video.id)) 
+                        button Edit Video
             h5.video__title=video.title
             p.video__description=video.description
             if video.views === 1

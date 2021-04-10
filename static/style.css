@@ -472,6 +472,8 @@ input[type="submit"] {
       margin-top: 25px; }
       .video-detail__container .video__info .video__comments .video__comment-number {
         font-size: 18px; }
+    .video-detail__container .video__info .video__author a {
+      color: blue; }
 
 .user-profile {
   width: 100%;
