@@ -36,12 +36,13 @@ export const postUpload = async(req,res) => {
         file: {path}
     } = req;
     const newVideo = await Video.create({
-        //same with models/Video
         fileUrl: path,
         title,
-        description
-    })
-    console.log(newVideo);
+        description,
+        creator: req.user.id
+    });
+    req.user.videos.push(newVideo.id);
+    req.user.save();
     res.redirect(routes.videoDetail(newVideo.id));
 };
 
@@ -52,7 +53,8 @@ export const videoDetail = async(req,res) => {
         params: {id}
     } = req;
     try {
-        const video = await Video.findById(id);
+        const video = await Video.findById(id).populate("creator"); 
+        //populate only can use to sth that with objectId
         res.render("videoDetail", {pageTitle: video.title, video})
     } catch(error) {
         res.redirect(routes.home);
