@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scs
   \**********************************/
 /***/ (function() {
 
-eval("var videoContainer = document.getElementById(\"jsVideoPlayer\");\nvar videoPlayer = videoContainer.querySelector(\"video\");\nvar playBtn = document.getElementById(\"jsPlayButton\");\n\nfunction handlePlayClick() {\n  if (videoPlayer.paused) {\n    videoPlayer.play();\n  } else {\n    videoPlayer.pause();\n  }\n}\n\nfunction init() {\n  playBtn.addEventListener(\"click\", handlePlayClick);\n}\n\n;\n\nif (videoContainer) {\n  init();\n}\n\n;\n\n//# sourceURL=webpack://wetube/./assets/js/videoPlayer.js?");
+eval("var videoContainer = document.getElementById(\"jsVideoPlayer\");\nvar videoPlayer = videoContainer.querySelector(\"video\");\nvar playBtn = document.getElementById(\"jsPlayButton\");\nvar volumnBtn = document.getElementById(\"jsVolumnBtn\");\n\nfunction handlePlayClick() {\n  if (videoPlayer.paused) {\n    videoPlayer.play();\n    playBtn.innerHTML = '<i class=\"fas fa-pause\"></i>';\n  } else {\n    videoPlayer.pause();\n    playBtn.innerHTML = '<i class=\"fas fa-play\"></i>';\n  }\n}\n\n;\n\nfunction handleVolumnClick() {\n  if (videoPlayer.muted) {\n    videoPlayer.muted = false;\n    volumnBtn.innerHTML = '<i class=\"fas fa-volume-up\"></i>';\n  } else {\n    videoPlayer.muted = true;\n    volumnBtn.innerHTML = '<i class=\"fas fa-volume-mute\"></i>';\n  }\n}\n\n;\n\nfunction init() {\n  playBtn.addEventListener(\"click\", handlePlayClick);\n  volumnBtn.addEventListener(\"click\", handleVolumnClick);\n}\n\n;\n\nif (videoContainer) {\n  init();\n}\n\n;\n\n//# sourceURL=webpack://wetube/./assets/js/videoPlayer.js?");
 
 /***/ }),
 
