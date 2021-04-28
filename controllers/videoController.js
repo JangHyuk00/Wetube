@@ -54,7 +54,9 @@ export const videoDetail = async(req,res) => {
         params: {id}
     } = req;
     try {
-        const video = await (await Video.findById(id).populate("creator")).populate("comments"); 
+        const video = await Video.findById(id)
+        .populate("creator")
+        .populate("comments");
         //populate only can use to sth that with objectId, get info from Video.js
         res.render("videoDetail", {pageTitle: video.title, video})
     } catch(error) {
