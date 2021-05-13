@@ -1,5 +1,9 @@
 import express from "express";
-import { getChangePassword, postChangePassword, getEditProfile, postEditProfile, userDetail } from "../controllers/userController";
+import { getChangePassword, 
+    postChangePassword, 
+    getEditProfile, 
+    postEditProfile, 
+    userDetail } from "../controllers/userController";
 import { onlyPrivate, uploadAvatar } from "../middlewares";
 import routes from "../routes";
 

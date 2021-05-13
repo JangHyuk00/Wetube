@@ -1,6 +1,8 @@
 import routes from "../routes";
 import passport from "passport";
+import Video from "../models/Video";
 import User from "../models/User";
+import Comment from "../models/Comment";
 
 export const getJoin = (req,res) => {
     res.render("join", {pageTitle: "Join"});
@@ -156,3 +158,31 @@ export const postChangePassword = async(req,res) => {
         res.redirect(`/users${routes.changePassword}`);
     }
 };
+
+// Delete Comment
+
+export const postDeleteComment = async(req,res) => {
+    const{
+        params:{id},
+        body: {targetComment}
+    } = req;
+    try {
+        const video = await Video.findById(id);
+        const comment = await Comment.find({text:targetComment});
+        const commentIndex = video.comments.some((value, index) => {
+            if (comment[0].id === value) {
+                return index;
+            };
+            return index;
+        });
+        const remove = video.comments.splice(commentIndex, 1);
+
+        await Comment.findOneAndRemove({text:targetComment});
+        video.save();
+        
+    } catch(error){
+        res.status(400);
+    } finally {
+        res.end();
+    }
+}
